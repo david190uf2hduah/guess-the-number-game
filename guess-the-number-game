@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>נחש את המספר</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>נחש את המספר!</h1>
+    <p>נחש מספר בין 1 ל-100:</p>
+    <input type="number" id="guess" min="1" max="100">
+    <button onclick="checkGuess()">נחש</button>
+
+    <div class="message" id="message"></div>
+
+    <script>
+        const randomNumber = Math.floor(Math.random() * 100) + 1;
+        let attempts = 0;
+
+        function checkGuess() {
+            const userGuess = parseInt(document.getElementById('guess').value);
+            attempts++;
+
+            const messageElement = document.getElementById('message');
+
+            if (userGuess < 1 || userGuess > 100) {
+                messageElement.textContent = "נא להזין מספר בין 1 ל-100.";
+            } else if (userGuess === randomNumber) {
+                messageElement.textContent = `נכון! המספר היה ${randomNumber}. ניסית ${attempts} פעמים.`;
+            } else if (userGuess < randomNumber) {
+                messageElement.textContent = "יותר גבוה!";
+            } else {
+                messageElement.textContent = "יותר נמוך!";
+            }
+        }
+    </script>
+
+</body>
+</html>
